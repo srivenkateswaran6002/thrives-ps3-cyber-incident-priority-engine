@@ -1,0 +1,122 @@
+@reference "../index.css";
+
+.drawer {
+  @apply flex h-full flex-col;
+  background: var(--surface);
+}
+
+.drawer-header {
+  @apply flex items-center justify-between border-b p-4;
+  border-color: var(--border);
+}
+
+.drawer-id {
+  @apply text-lg font-bold font-mono;
+  color: var(--text);
+}
+
+.drawer-type {
+  @apply text-sm font-medium;
+  color: var(--accent);
+}
+
+.drawer-close {
+  @apply rounded-lg p-1.5 text-xl leading-none transition-colors;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+}
+
+.drawer-close:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.drawer-body {
+  @apply flex-1 overflow-y-auto p-4;
+}
+
+.drawer-score {
+  @apply mb-4 flex items-baseline justify-between rounded-lg p-3;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.drawer-score-label {
+  @apply text-xs uppercase tracking-wider;
+  color: var(--text-muted);
+}
+
+.drawer-score-value {
+  @apply text-2xl font-bold;
+}
+
+.factor-table {
+  @apply mt-4 w-full text-sm;
+}
+
+.factor-table th {
+  @apply px-1 pb-1.5 text-left text-[11px] font-medium uppercase tracking-wider;
+  color: var(--text-muted);
+}
+
+.factor-table td {
+  @apply px-1 py-1.5 border-b;
+  border-color: var(--border);
+}
+
+.factor-name {
+  @apply font-medium;
+  color: var(--text);
+}
+
+.factor-raw {
+  color: var(--text);
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.factor-weight {
+  @apply text-right;
+  color: var(--accent);
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.track {
+  @apply h-1.5 w-full overflow-hidden rounded-full;
+  background: var(--surface-3);
+}
+
+.track-fill {
+  @apply h-full rounded-full;
+  background: var(--accent);
+}
+
+.status-row {
+  @apply mt-4 grid grid-cols-3 gap-2;
+}
+
+.status-choice {
+  @apply rounded-lg px-2 py-2 text-xs font-medium transition-colors;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.status-choice:hover {
+  color: var(--text);
+}
+
+.status-choice-active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.chart-wrap {
+  @apply mt-2;
+}
+
+.empty-drawer {
+  @apply flex h-full items-center justify-center p-8 text-center;
+  color: var(--text-muted);
+}

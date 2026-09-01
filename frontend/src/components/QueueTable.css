@@ -1,0 +1,96 @@
+@reference "../index.css";
+
+.queue-table-wrap {
+  @apply flex-1 overflow-auto;
+  background: var(--bg);
+}
+
+.queue-table {
+  @apply w-full border-collapse text-sm;
+}
+
+.queue-table thead th {
+  @apply sticky top-0 z-10 px-3 py-2.5 text-left font-medium;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.queue-table tbody tr {
+  @apply cursor-pointer border-b transition-colors;
+  border-color: var(--border);
+}
+
+.queue-table tbody tr:hover {
+  background: var(--surface-2);
+}
+
+.queue-cell {
+  @apply px-3 py-2.5 whitespace-nowrap;
+}
+
+.rank-cell {
+  @apply font-semibold w-10 text-center;
+  color: var(--text-muted);
+}
+
+.id-cell {
+  @apply font-semibold;
+  color: var(--text);
+}
+
+.type-cell {
+  @apply font-medium;
+  color: var(--text);
+}
+
+.status-badge {
+  @apply inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium;
+}
+
+.status-new {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.status-investigating {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+
+.status-resolved {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.score-wrap {
+  @apply flex items-center gap-2;
+}
+
+.score-num {
+  @apply w-12 text-right font-semibold font-mono;
+  color: var(--text);
+}
+
+.score-track {
+  @apply h-2 w-24 overflow-hidden rounded-full;
+  background: var(--surface-3);
+}
+
+.score-fill {
+  @apply h-full rounded-full;
+  background-color: var(--fill-color, var(--accent));
+  width: var(--fill-width, 0%);
+}
+
+.row-selected {
+  background: var(--accent-soft) !important;
+}
+
+.empty-state {
+  @apply flex flex-1 items-center justify-center p-16;
+  color: var(--text-muted);
+}

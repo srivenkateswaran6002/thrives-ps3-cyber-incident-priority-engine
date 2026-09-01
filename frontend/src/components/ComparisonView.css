@@ -1,0 +1,66 @@
+@reference "../index.css";
+
+.comparison {
+  @apply border-t;
+  border-color: var(--border);
+  background: var(--surface);
+}
+
+.comparison-inner {
+  @apply px-4 py-3;
+}
+
+.comparison-grid {
+  @apply grid grid-cols-2 gap-4;
+}
+
+.compare-card {
+  @apply rounded-lg p-3;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.compare-card-id {
+  @apply font-bold font-mono;
+  color: var(--text);
+}
+
+.compare-card-type {
+  @apply text-xs;
+  color: var(--text-muted);
+}
+
+.compare-card-score {
+  @apply mt-1 text-xl font-bold;
+}
+
+.compare-track {
+  @apply mt-1.5 h-1.5 w-full overflow-hidden rounded-full;
+  background: var(--surface-3);
+}
+
+.compare-fill {
+  @apply h-full rounded-full;
+  background: var(--accent);
+}
+
+.justification {
+  @apply mt-3 rounded-lg p-3 text-sm leading-relaxed;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: var(--text);
+}
+
+.justification-label {
+  @apply mb-1 text-[11px] font-semibold uppercase tracking-wider;
+  color: var(--accent);
+}
+
+.comparison-chart {
+  @apply mt-2;
+}
+
+.comparison-empty {
+  @apply px-4 py-3 text-sm;
+  color: var(--text-muted);
+}

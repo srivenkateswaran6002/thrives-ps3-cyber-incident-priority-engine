@@ -1,0 +1,62 @@
+@reference "../index.css";
+
+.ingest-type-row {
+  @apply mb-1.5 flex items-center gap-2;
+}
+
+.ingest-type-name {
+  @apply w-24 text-xs;
+  color: var(--text-muted);
+}
+
+.ingest-type-track {
+  @apply h-1.5 flex-1 overflow-hidden rounded-full;
+  background: var(--surface-3);
+}
+
+.ingest-type-fill {
+  @apply h-full rounded-full;
+  background: var(--accent);
+}
+
+.ingest-type-count {
+  @apply w-8 text-right text-xs font-mono;
+  color: var(--text-muted);
+}
+
+.ingest-actions {
+  @apply grid grid-cols-2 gap-2;
+}
+
+.ingest-btn {
+  @apply rounded-lg px-3 py-2 text-sm font-medium transition-colors;
+}
+
+.ingest-btn-primary {
+  color: #fff;
+  background: var(--accent);
+}
+
+.ingest-btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.ingest-btn-danger {
+  color: var(--danger);
+  background: var(--danger-soft);
+  border: 1px solid var(--danger);
+}
+
+.ingest-btn-danger:hover {
+  filter: brightness(1.1);
+}
+
+.ingest-btn-ghost {
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.ingest-btn-ghost:hover {
+  background: var(--surface-3);
+}
