@@ -1,5 +1,5 @@
-import { useRankedAlerts } from "../store/useAlertStore.js"
 import { useAlertStore } from "../store/useAlertStore.js"
+import { useFilteredAlerts } from "../store/useAlertStore.js"
 import {
   RadarChart,
   PolarGrid,
@@ -19,7 +19,7 @@ function formatRaw(key, value) {
 }
 
 function IncidentDrawer() {
-  const rankedAlerts = useRankedAlerts()
+  const rankedAlerts = useFilteredAlerts()
   const selectedAlertId = useAlertStore((s) => s.selectedAlertId)
   const updateAlertStatus = useAlertStore((s) => s.updateAlertStatus)
   const selectAlert = useAlertStore((s) => s.selectAlert)
@@ -55,6 +55,14 @@ function IncidentDrawer() {
             {Math.round(alert.score * 100)}
           </span>
         </div>
+
+        {alert.policyNotes?.length > 0 && (
+          <div className="policy-note">
+            {alert.policyNotes.map((n) => (
+              <span key={n.label}>{n.text} from {n.label}</span>
+            ))}
+          </div>
+        )}
 
         <div className="chart-wrap" style={{ width: "100%", height: 220 }}>
           <ResponsiveContainer>

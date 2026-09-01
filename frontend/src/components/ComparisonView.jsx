@@ -8,7 +8,8 @@ import {
   PolarRadiusAxis,
   Legend,
 } from "recharts"
-import { useAlertStore, useRankedAlerts } from "../store/useAlertStore.js"
+import { useAlertStore } from "../store/useAlertStore.js"
+import { useFilteredAlerts } from "../store/useAlertStore.js"
 import { FACTOR_KEYS, FACTOR_LABELS } from "../utils/normalize.js"
 import { generateJustification, scoreLabel } from "../utils/scoringEngine.js"
 import "./ComparisonView.css"
@@ -31,7 +32,7 @@ function CompareCard({ alert }) {
 
 function ComparisonView() {
   const comparisonIds = useAlertStore((s) => s.comparisonIds)
-  const rankedAlerts = useRankedAlerts()
+  const rankedAlerts = useFilteredAlerts()
 
   const [a, b] = useMemo(() => {
     const first = rankedAlerts.find((x) => x.id === comparisonIds[0])

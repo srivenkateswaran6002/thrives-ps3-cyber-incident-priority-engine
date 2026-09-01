@@ -7,7 +7,7 @@ import {
   createColumnHelper,
 } from "@tanstack/react-table"
 import { useAlertStore } from "../store/useAlertStore.js"
-import { useRankedAlerts } from "../store/useAlertStore.js"
+import { useFilteredAlerts } from "../store/useAlertStore.js"
 import { scoreLabel } from "../utils/scoringEngine.js"
 import "./QueueTable.css"
 
@@ -39,7 +39,7 @@ function ScoreCell({ value }) {
 }
 
 function QueueTable() {
-  const rankedAlerts = useRankedAlerts()
+  const rankedAlerts = useFilteredAlerts()
   const selectedAlertId = useAlertStore((s) => s.selectedAlertId)
   const selectAlert = useAlertStore((s) => s.selectAlert)
   const setComparison = useAlertStore((s) => s.setComparison)

@@ -3,8 +3,9 @@ import ThemeToggle from "./ThemeToggle.jsx"
 import QueueTable from "./QueueTable.jsx"
 import IncidentDrawer from "./IncidentDrawer.jsx"
 import ComparisonView from "./ComparisonView.jsx"
-import WeightSliders from "./WeightSliders.jsx"
+import PolicyAdjustments from "./PolicyAdjustments.jsx"
 import IngestPanel from "./IngestPanel.jsx"
+import FilterBar from "./FilterBar.jsx"
 import "./Dashboard.css"
 
 function Dashboard() {
@@ -14,7 +15,7 @@ function Dashboard() {
     <div className="dashboard">
       <aside className="dashboard-sidebar">
         <IngestPanel />
-        <WeightSliders />
+        <PolicyAdjustments />
       </aside>
 
       <main className="dashboard-main">
@@ -31,6 +32,7 @@ function Dashboard() {
 
         <div className="dashboard-body">
           <section className="dashboard-content">
+            <FilterBar />
             <QueueTable />
             <ComparisonView />
           </section>

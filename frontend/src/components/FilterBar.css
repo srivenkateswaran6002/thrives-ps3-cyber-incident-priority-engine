@@ -1,0 +1,82 @@
+@reference "../index.css";
+
+.filter-bar {
+  @apply flex flex-wrap items-end gap-3 px-4 py-3 border-b;
+  border-color: var(--border);
+  background: var(--surface);
+}
+
+.filter-group {
+  @apply flex flex-col gap-1;
+}
+
+.filter-label {
+  @apply text-[11px] font-medium uppercase tracking-wider;
+  color: var(--text-muted);
+}
+
+.filter-select {
+  @apply rounded-md px-2 py-1.5 text-xs;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.filter-seg {
+  @apply inline-flex rounded-md overflow-hidden border;
+  border-color: var(--border);
+}
+
+.filter-seg-btn {
+  @apply px-2 py-1.5 text-xs font-medium transition-colors;
+  color: var(--text-muted);
+  background: var(--surface-2);
+}
+
+.filter-seg-btn:hover {
+  color: var(--text);
+}
+
+.filter-seg-active {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.filter-range {
+  @apply w-full;
+}
+
+.filter-range-inputs {
+  @apply flex items-center gap-2 text-[11px] font-mono;
+  color: var(--text-muted);
+}
+
+.filter-range-val {
+  @apply w-7 text-center font-semibold;
+  color: var(--text);
+}
+
+.filter-actions {
+  @apply flex items-center gap-2 ml-auto;
+}
+
+.filter-count {
+  @apply text-xs font-medium whitespace-nowrap;
+  color: var(--text-muted);
+}
+
+.filter-reset {
+  @apply rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors;
+  color: var(--danger);
+  background: var(--danger-soft);
+  border: 1px solid var(--danger);
+}
+
+.filter-reset:hover {
+  filter: brightness(1.1);
+}
+
+.filter-active-dot {
+  @apply inline-flex h-1.5 w-1.5 rounded-full;
+  background: var(--accent);
+}

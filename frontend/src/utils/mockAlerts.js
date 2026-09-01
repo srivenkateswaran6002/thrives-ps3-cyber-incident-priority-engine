@@ -7,6 +7,8 @@ const TYPES = [
   { id: "data-exfiltration", label: "Data Exfiltration", weight: 10 },
 ]
 
+export const ALERT_TYPES = TYPES.map((t) => t.id)
+
 function pickType() {
   const total = TYPES.reduce((s, t) => s + t.weight, 0)
   let r = Math.random() * total
