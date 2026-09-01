@@ -11,15 +11,10 @@ from app.groq_client import generate_justification
 
 app = FastAPI(title="Cyber Incident Priority Engine - ML Scoring")
 
-ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:3000",
-    os.environ.get("FRONTEND_ORIGIN", "https://your-vercel-app.vercel.app"),
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
