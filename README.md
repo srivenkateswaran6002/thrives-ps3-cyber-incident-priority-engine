@@ -4,7 +4,7 @@
 
 ![React](https://img.shields.io/badge/React-Vite-149eca) ![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688) ![scikit--learn](https://img.shields.io/badge/scikit--learn-GradientBoosting-f7931e) ![Groq](https://img.shields.io/badge/Groq-llama--3.3--70b-orange) ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
-[**Live demo**](#) · [**Devpost submission**](#) · [Jump to setup](#getting-started)
+[**Live demo**](https://frontend-ashy-ten-12.vercel.app) · [Jump to setup](#getting-started)
 
 > First request after a period of inactivity can take ~20–30s while the free-tier backend wakes up — see [Known Limitations](#known-limitations).
 
