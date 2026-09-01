@@ -1,0 +1,90 @@
+@reference "../index.css";
+
+.solution-page {
+  @apply max-w-5xl mx-auto px-6 py-8 w-full;
+}
+
+.solution-header {
+  @apply mb-8 flex flex-col items-start;
+}
+
+.solution-badge {
+  @apply text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded mb-3;
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.solution-title {
+  @apply text-3xl font-extrabold mb-2;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.solution-subtitle {
+  @apply text-base max-w-2xl;
+  color: var(--text-muted);
+}
+
+.solution-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.factors-grid {
+  @apply grid grid-cols-2 gap-3 mt-2;
+}
+
+.factor-item {
+  @apply flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.factor-icon {
+  @apply text-base;
+}
+
+.architecture-diagram {
+  @apply flex flex-col md:flex-row items-center justify-between gap-4 mt-6 p-6 rounded-xl;
+  background: var(--surface-2);
+  border: 1px dashed var(--border);
+}
+
+.arch-step {
+  @apply flex flex-col items-center text-center p-4 rounded-xl min-w-[140px];
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.arch-step-highlight {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.arch-icon {
+  @apply text-3xl mb-2;
+}
+
+.arch-title {
+  @apply text-sm font-bold mb-1;
+  color: var(--text);
+}
+
+.arch-desc {
+  @apply text-[10px] uppercase tracking-wider;
+  color: var(--text-muted);
+}
+
+.arch-arrow {
+  @apply text-2xl font-light hidden md:block;
+  color: var(--text-muted);
+}
+
+.col-span-full {
+  grid-column: 1 / -1;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}

@@ -24,6 +24,27 @@
   color: var(--text-muted);
 }
 
+.ingest-tabs {
+  @apply flex rounded-lg overflow-hidden border mb-3;
+  border-color: var(--border);
+}
+
+.ingest-tab {
+  @apply flex-1 px-2 py-1.5 text-[11px] font-medium transition-colors text-center;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: none;
+}
+
+.ingest-tab:hover {
+  color: var(--text);
+}
+
+.ingest-tab-active {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
 .ingest-actions {
   @apply grid grid-cols-2 gap-2;
 }
@@ -59,4 +80,69 @@
 
 .ingest-btn-ghost:hover {
   background: var(--surface-3);
+}
+
+/* JSON input */
+.ingest-json-section {
+  @apply flex flex-col gap-2;
+}
+
+.ingest-textarea {
+  @apply w-full rounded-lg p-2 text-xs font-mono leading-relaxed resize-y;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  min-height: 80px;
+}
+
+.ingest-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.ingest-textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* File upload */
+.ingest-file-section {
+  @apply flex flex-col gap-2;
+}
+
+.ingest-file-label {
+  @apply cursor-pointer;
+}
+
+.ingest-file-input {
+  @apply hidden;
+}
+
+.ingest-file-cta {
+  @apply flex items-center justify-center gap-2 rounded-lg px-3 py-4 text-xs font-medium transition-colors;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 2px dashed var(--border);
+}
+
+.ingest-file-cta:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Feedback messages */
+.ingest-msg {
+  @apply mt-2 rounded-lg px-2.5 py-1.5 text-[11px] font-medium;
+}
+
+.ingest-msg-success {
+  color: var(--success);
+  background: var(--success-soft);
+  border: 1px solid var(--success);
+}
+
+.ingest-msg-error {
+  color: var(--danger);
+  background: var(--danger-soft);
+  border: 1px solid var(--danger);
 }

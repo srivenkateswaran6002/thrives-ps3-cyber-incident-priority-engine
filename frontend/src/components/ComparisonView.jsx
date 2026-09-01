@@ -10,7 +10,7 @@ import {
 } from "recharts"
 import { useAlertStore } from "../store/useAlertStore.js"
 import { useFilteredAlerts } from "../store/useAlertStore.js"
-import { FACTOR_KEYS, FACTOR_LABELS } from "../utils/normalize.js"
+import { FACTOR_KEYS, FACTOR_SHORT_LABELS } from "../utils/normalize.js"
 import { generateJustification, scoreLabel } from "../utils/scoringEngine.js"
 import "./ComparisonView.css"
 
@@ -47,7 +47,7 @@ function ComparisonView() {
   const justification = a && b ? generateJustification(a, b) : "Select a second incident to compare."
 
   const chartData = FACTOR_KEYS.map((key) => ({
-    factor: FACTOR_LABELS[key],
+    factor: FACTOR_SHORT_LABELS[key],
     A: a ? Math.round((a.breakdown?.normalized?.[key] ?? 0) * 100) : 0,
     B: b ? Math.round((b.breakdown?.normalized?.[key] ?? 0) * 100) : 0,
   }))
@@ -73,11 +73,11 @@ function ComparisonView() {
         </div>
 
         {a && b && (
-          <div className="comparison-chart" style={{ width: "100%", height: 180 }}>
+          <div className="comparison-chart" style={{ width: "100%", height: 200 }}>
             <ResponsiveContainer>
               <RadarChart data={chartData} outerRadius="65%">
                 <PolarGrid stroke="var(--border)" />
-                <PolarAngleAxis dataKey="factor" tick={{ fill: "var(--text-muted)", fontSize: 9 }} />
+                <PolarAngleAxis dataKey="factor" tick={{ fill: "var(--text)", fontSize: 12, fontWeight: 500 }} />
                 <PolarRadiusAxis tick={false} axisLine={false} />
                 <Radar name={a.id} dataKey="A" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.25} />
                 <Radar name={b.id} dataKey="B" stroke="#ef4444" fill="#ef4444" fillOpacity={0.25} />

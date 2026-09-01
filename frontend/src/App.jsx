@@ -1,18 +1,17 @@
 import { useEffect } from "react"
 import { useAlertStore } from "./store/useAlertStore.js"
-import { generateAlerts } from "./utils/mockAlerts.js"
-import Dashboard from "./components/Dashboard.jsx"
+import Layout from "./components/Layout.jsx"
 
 function App() {
-  const loadAlerts = useAlertStore((s) => s.loadAlerts)
+  const checkBackend = useAlertStore((s) => s.checkBackend)
   const initTheme = useAlertStore((s) => s.initTheme)
 
   useEffect(() => {
-    loadAlerts(generateAlerts(100))
     initTheme()
-  }, [loadAlerts, initTheme])
+    checkBackend()
+  }, [initTheme, checkBackend])
 
-  return <Dashboard />
+  return <Layout />
 }
 
 export default App

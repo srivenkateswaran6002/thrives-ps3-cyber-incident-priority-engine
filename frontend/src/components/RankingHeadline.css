@@ -1,0 +1,23 @@
+@reference "../index.css";
+
+.ranking-headline {
+  @apply flex flex-wrap items-center gap-1.5 px-4 py-2 text-xs border-b;
+  border-color: var(--border);
+  background: var(--surface);
+}
+
+.ranking-headline-label {
+  @apply font-semibold uppercase tracking-wider;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.ranking-headline-factors {
+  @apply font-medium;
+  color: var(--text);
+}
+
+.ranking-headline-source {
+  @apply text-[10px];
+  color: var(--text-muted);
+}

@@ -3,7 +3,7 @@ import { useShallow } from "zustand/react/shallow"
 import { useMemo } from "react"
 import { rankAlerts, scoreLabel } from "../utils/scoringEngine.js"
 import { autoNormalizeWeights } from "../utils/normalize.js"
-import { scoreAlertsRemote } from "../services/api.js"
+import { scoreAlertsRemote, checkHealth } from "../services/api.js"
 
 const DEFAULT_WEIGHTS = {
   severity: 18,
@@ -59,6 +59,7 @@ function stripScore(a) {
 
 function applyPolicyAdjustments(scored, policy) {
   let adjusted = scored.map((a) => {
+    const preAdjustScore = a.score
     let s = a.score
     const notes = []
     if (policy.complianceBoost && a.factors.dataSensitivity > 7) {
@@ -73,7 +74,7 @@ function applyPolicyAdjustments(scored, policy) {
       s *= 0.6
       notes.push({ label: "High-Confidence Only", text: "-40% (confidence < 30%)" })
     }
-    return { ...a, score: Math.max(0, Math.min(1, s)), policyNotes: notes }
+    return { ...a, score: Math.max(0, Math.min(1, s)), preAdjustScore, policyDelta: Math.max(0, Math.min(1, s)) - preAdjustScore, policyNotes: notes }
   })
 
   adjusted.sort((x, y) => {
@@ -103,6 +104,10 @@ export const useAlertStore = create((set, get) => ({
   theme: "light",
   isDripping: false,
   filters: { ...DEFAULT_FILTERS },
+  backendStatus: "checking",
+  currentPage: "solution",
+
+  setPage: (page) => set({ currentPage: page }),
 
   setFilter: (key, value) =>
     set((state) => ({ filters: { ...state.filters, [key]: value } })),
@@ -112,13 +117,27 @@ export const useAlertStore = create((set, get) => ({
   refreshScores: () => {
     clearTimeout(refreshTimer)
     refreshTimer = setTimeout(() => {
-      const { rawAlerts, policyAdjustments } = get()
+      const { rawAlerts, policyAdjustments, backendStatus } = get()
       const run = async () => {
         if (refreshInFlight) {
           pendingRefresh = true
           return
         }
         refreshInFlight = true
+        
+        if (rawAlerts.length === 0) {
+          set({
+            alerts: [],
+            scoringMode: backendStatus === "connected" ? "ml" : "fallback",
+          })
+          refreshInFlight = false
+          if (pendingRefresh) {
+            pendingRefresh = false
+            get().refreshScores()
+          }
+          return
+        }
+
         try {
           const { alerts: scored, modelFeatureImportance } = await scoreAlertsRemote(rawAlerts)
           const adjusted = applyPolicyAdjustments(scored, policyAdjustments)
@@ -211,9 +230,47 @@ export const useAlertStore = create((set, get) => ({
   toggleDrip: (value) => set({ isDripping: value }),
 
   setDrip: (value) => set({ isDripping: value }),
-}))
 
-const TIER_ORDER = ["Low", "Medium", "High", "Critical"]
+  checkBackend: async () => {
+    set({ backendStatus: "checking" })
+    const ok = await checkHealth()
+    set((state) => {
+      const updates = { backendStatus: ok ? "connected" : "unreachable" }
+      if (state.rawAlerts.length === 0) {
+        updates.scoringMode = ok ? "ml" : "fallback"
+      }
+      return updates
+    })
+  },
+
+  loadAlertsFromJson: (jsonString) => {
+    try {
+      let parsed = JSON.parse(jsonString)
+      if (!Array.isArray(parsed)) parsed = [parsed]
+      const alerts = parsed.map((a) => ({
+        id: a.id || `ALT-${String(Math.floor(Math.random() * 9000) + 1000).padStart(4, '0')}`,
+        type: a.type || 'Unknown',
+        typeId: a.typeId || a.type?.toLowerCase().replace(/\s+/g, '-') || 'unknown',
+        timestamp: a.timestamp || new Date().toISOString(),
+        status: a.status || 'new',
+        factors: {
+          severity: Number(a.factors?.severity ?? a.severity ?? 5),
+          assetImportance: Number(a.factors?.assetImportance ?? a.assetImportance ?? 5),
+          affectedUsers: Number(a.factors?.affectedUsers ?? a.affectedUsers ?? 100),
+          dataSensitivity: Number(a.factors?.dataSensitivity ?? a.dataSensitivity ?? 5),
+          attackConfidence: Number(a.factors?.attackConfidence ?? a.attackConfidence ?? 0.5),
+          businessImpact: Number(a.factors?.businessImpact ?? a.businessImpact ?? 5),
+        },
+        score: 0,
+        breakdown: {},
+      }))
+      get().loadAlerts(alerts)
+      return { ok: true, count: alerts.length }
+    } catch (e) {
+      return { ok: false, error: e.message }
+    }
+  },
+}))
 
 function timeRangeCutoff(range) {
   const ms =
@@ -243,7 +300,7 @@ export function useFilteredAlerts() {
 
       if (f.criticality !== "all") {
         const tier = scoreLabel(alert.score).tier
-        if (TIER_ORDER.indexOf(tier) !== TIER_ORDER.indexOf(f.criticality)) return false
+        if (tier.toLowerCase() !== f.criticality.toLowerCase()) return false
       }
 
       if (fx.severity < f.severityMin || fx.severity > f.severityMax) return false

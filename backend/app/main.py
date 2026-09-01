@@ -6,7 +6,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app import model
-from app.schemas import ModelInfoResponse, ScoreBatchRequest, ScoreBatchResponse
+from app.schemas import ModelInfoResponse, ScoreBatchRequest, ScoreBatchResponse, JustifyRequest, JustifyResponse
+from app.groq_client import generate_justification
 
 app = FastAPI(title="Cyber Incident Priority Engine - ML Scoring")
 
@@ -43,3 +44,9 @@ def model_info():
 def score_batch(req: ScoreBatchRequest):
     scored, importance = model.predict_batch(req.alerts)
     return ScoreBatchResponse(alerts=scored, modelFeatureImportance=importance)
+
+
+@app.post("/api/justify", response_model=JustifyResponse)
+async def justify(req: JustifyRequest):
+    justification = await generate_justification(req.model_dump())
+    return JustifyResponse(id=req.id, justification=justification)

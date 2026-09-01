@@ -1,0 +1,46 @@
+@reference "../index.css";
+
+.analytics-page {
+  @apply max-w-6xl mx-auto px-6 py-8 w-full;
+}
+
+.analytics-header {
+  @apply mb-6;
+}
+
+.analytics-title {
+  @apply text-2xl font-bold mb-1;
+  color: var(--text);
+}
+
+.analytics-subtitle {
+  @apply text-sm;
+  color: var(--text-muted);
+}
+
+.analytics-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.analytics-card {
+  @apply p-6 flex flex-col;
+}
+
+.analytics-desc {
+  @apply text-xs mb-4;
+  color: var(--text-muted);
+}
+
+.chart-container {
+  @apply flex-1 mt-2 -ml-4; /* slightly pull left to align chart axis with text */
+}
+
+.col-span-full {
+  grid-column: 1 / -1;
+}
+
+.analytics-empty {
+  @apply flex h-full items-center justify-center text-sm italic;
+  color: var(--text-muted);
+  min-height: 200px;
+}

@@ -1,0 +1,106 @@
+@reference "../index.css";
+
+/* App Shell */
+.app-shell {
+  @apply flex h-screen flex-col overflow-hidden;
+}
+
+/* Scoring Banner */
+.banner {
+  @apply flex items-center justify-between px-4 py-1.5 text-xs font-semibold tracking-wide shrink-0;
+  min-height: 32px;
+}
+.banner-content {
+  @apply flex items-center gap-2;
+}
+.banner-close {
+  @apply ml-4 text-lg leading-none cursor-pointer opacity-70 hover:opacity-100 transition-opacity bg-transparent border-none p-0;
+  color: inherit;
+}
+.banner-success { color: #fff; background: #16a34a; }
+.banner-warn { color: #fff; background: #d97706; animation: pulse-bg 2s ease-in-out infinite; }
+.banner-info { color: #fff; background: var(--accent); }
+.banner-icon { font-size: 14px; }
+.banner-dot {
+  @apply inline-flex h-2 w-2 rounded-full animate-pulse;
+  background: rgba(255,255,255,0.8);
+}
+@keyframes pulse-bg { 0%,100%{opacity:1} 50%{opacity:0.8} }
+
+/* Top Navigation */
+.topnav {
+  @apply flex items-center justify-between px-4 py-0 shrink-0;
+  height: 52px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.topnav-left {
+  @apply flex items-center gap-1;
+}
+.topnav-right {
+  @apply flex items-center gap-2;
+}
+.topnav-logo {
+  @apply text-xl font-bold mr-1;
+  color: var(--accent);
+}
+.topnav-brand {
+  @apply text-sm font-bold tracking-wide mr-2;
+  color: var(--text);
+}
+.topnav-sep {
+  @apply h-5 mx-2;
+  width: 1px;
+  background: var(--border);
+}
+.topnav-link {
+  @apply flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+}
+.topnav-link:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+.topnav-link-active {
+  color: var(--accent) !important;
+  background: var(--accent-soft) !important;
+}
+.topnav-badge {
+  @apply rounded-full px-1.5 py-0 text-[10px] font-bold;
+  background: var(--accent);
+  color: #fff;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* Page Content */
+.page-content {
+  @apply flex-1 overflow-auto;
+  background: var(--bg);
+}
+
+/* Loading Screen */
+.loading-screen {
+  @apply fixed inset-0 z-50 flex items-center justify-center;
+  background: var(--bg);
+}
+.loading-card {
+  @apply flex flex-col items-center gap-4 p-8;
+}
+.loading-spinner {
+  @apply h-10 w-10 rounded-full;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-title {
+  @apply text-lg font-semibold;
+  color: var(--text);
+}
+.loading-sub {
+  @apply text-sm;
+  color: var(--text-muted);
+}

@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
   PolarRadiusAxis,
 } from "recharts"
-import { FACTOR_KEYS, FACTOR_LABELS } from "../utils/normalize.js"
+import { FACTOR_KEYS, FACTOR_SHORT_LABELS } from "../utils/normalize.js"
 import { scoreLabel } from "../utils/scoringEngine.js"
 import "./IncidentDrawer.css"
 
@@ -32,7 +32,7 @@ function IncidentDrawer() {
 
   const { color } = scoreLabel(alert.score)
   const chartData = FACTOR_KEYS.map((key) => ({
-    factor: FACTOR_LABELS[key],
+    factor: FACTOR_SHORT_LABELS[key],
     value: Math.round((alert.breakdown?.normalized?.[key] ?? 0) * 100),
   }))
 
@@ -68,7 +68,7 @@ function IncidentDrawer() {
           <ResponsiveContainer>
             <RadarChart data={chartData} outerRadius="70%">
               <PolarGrid stroke="var(--border)" />
-              <PolarAngleAxis dataKey="factor" tick={{ fill: "var(--text-muted)", fontSize: 10 }} />
+              <PolarAngleAxis dataKey="factor" tick={{ fill: "var(--text)", fontSize: 12, fontWeight: 500 }} />
               <PolarRadiusAxis tick={false} axisLine={false} />
               <Radar dataKey="value" stroke="var(--accent)" fill="var(--accent)" fillOpacity={0.35} />
             </RadarChart>
@@ -88,7 +88,7 @@ function IncidentDrawer() {
               const weighted = (alert.breakdown?.weighted?.[key] ?? 0) * 100
               return (
                 <tr key={key}>
-                  <td className="factor-name">{FACTOR_LABELS[key]}</td>
+                  <td className="factor-name">{FACTOR_SHORT_LABELS[key]}</td>
                   <td className="factor-raw">{formatRaw(key, alert.factors[key])}</td>
                   <td style={{ width: "40%" }}>
                     <div className="track">

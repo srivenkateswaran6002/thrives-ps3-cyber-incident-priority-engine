@@ -1,9 +1,13 @@
 @reference "../index.css";
 
 .comparison {
-  @apply border-t;
+  @apply border-t relative flex flex-col shrink-0;
   border-color: var(--border);
   background: var(--surface);
+  resize: vertical;
+  overflow-y: auto;
+  min-height: 180px;
+  max-height: 70vh;
 }
 
 .comparison-inner {

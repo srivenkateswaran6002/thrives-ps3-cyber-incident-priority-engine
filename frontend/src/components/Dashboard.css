@@ -4,6 +4,10 @@
   @apply flex h-screen w-full overflow-hidden;
 }
 
+.dashboard-hidden {
+  @apply invisible;
+}
+
 .dashboard-main {
   @apply flex flex-1 flex-col overflow-hidden;
 }
@@ -26,4 +30,96 @@
   @apply flex w-96 shrink-0 flex-col border-l;
   border-color: var(--border);
   background: var(--bg);
+}
+
+/* Scoring Mode Banner */
+.scoring-banner {
+  @apply flex items-center gap-2 px-4 py-2 text-xs font-semibold tracking-wide;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.scoring-banner-ml {
+  color: #fff;
+  background: #16a34a;
+}
+
+.scoring-banner-fallback {
+  color: #fff;
+  background: #d97706;
+  animation: pulse-bg 2s ease-in-out infinite;
+}
+
+.scoring-banner-loading {
+  color: #fff;
+  background: var(--accent);
+}
+
+.scoring-banner-icon {
+  @apply text-sm;
+}
+
+.scoring-banner-dot {
+  @apply inline-flex h-2 w-2 rounded-full animate-pulse;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes pulse-bg {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center;
+  background: var(--bg);
+}
+
+.loading-card {
+  @apply flex flex-col items-center gap-4 p-8;
+}
+
+.loading-spinner {
+  @apply h-10 w-10 rounded-full;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-title {
+  @apply text-lg font-semibold;
+  color: var(--text);
+}
+
+.loading-subtitle {
+  @apply text-sm;
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .dashboard-right {
+    @apply fixed right-0 top-0 z-40 h-full w-80 translate-x-full transition-transform;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  }
+  .dashboard-right:has(.drawer) {
+    @apply translate-x-0;
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard {
+    @apply flex-col;
+  }
+  .dashboard-sidebar {
+    @apply w-full flex-row overflow-x-auto border-r-0 border-b p-2 gap-2;
+    border-color: var(--border);
+  }
+  .dashboard-sidebar > * {
+    @apply min-w-64;
+  }
 }

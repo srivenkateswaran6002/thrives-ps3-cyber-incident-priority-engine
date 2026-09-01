@@ -29,6 +29,15 @@ export const FACTOR_LABELS = {
   businessImpact: "Business Impact",
 }
 
+export const FACTOR_SHORT_LABELS = {
+  severity: "Severity",
+  assetImportance: "Asset Imp.",
+  affectedUsers: "Affected Users",
+  dataSensitivity: "Data Sens.",
+  attackConfidence: "Attack Conf.",
+  businessImpact: "Biz Impact",
+}
+
 export function autoNormalizeWeights(weights) {
   const total = FACTOR_KEYS.reduce((s, k) => s + (weights[k] || 0), 0)
   if (total <= 0) {

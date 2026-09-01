@@ -87,6 +87,28 @@ export function generateJustification(a, b) {
   return `${a.id} ranks above ${b.id} primarily due to ${reasons}.`
 }
 
+export function generateSingleJustification(alert) {
+  if (!alert || !alert.breakdown?.weighted) return ""
+
+  const entries = FACTOR_KEYS.map((key) => ({
+    key,
+    label: FACTOR_LABELS[key],
+    weight: alert.breakdown.weighted[key] || 0,
+  })).sort((a, b) => b.weight - a.weight)
+
+  const top = entries.slice(0, 3)
+  const topReasons = top
+    .map((e) => `${e.label} (${(e.weight * 100).toFixed(1)}%)`)
+    .join(", ")
+
+  const policyText =
+    alert.policyNotes?.length > 0
+      ? " | Policy: " + alert.policyNotes.map((n) => n.text).join("; ")
+      : ""
+
+  return `Ranked #${alert.rank ?? "?"} — driven by ${topReasons}${policyText}`
+}
+
 export function scoreLabel(score) {
   if (score >= 0.8) return { tier: "Critical", color: "var(--danger)" }
   if (score >= 0.6) return { tier: "High", color: "var(--warning)" }

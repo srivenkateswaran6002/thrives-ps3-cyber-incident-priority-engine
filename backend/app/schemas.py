@@ -43,3 +43,18 @@ class ModelInfoResponse(BaseModel):
     featureImportance: dict[str, float]
     modelType: str
     validationMAE: float
+
+
+class JustifyRequest(BaseModel):
+    id: str
+    type: str
+    score: float
+    rank: int
+    factors: Factors
+    breakdown: dict[str, dict[str, float]]
+    policyNotes: list[dict[str, str]] = []
+
+
+class JustifyResponse(BaseModel):
+    id: str
+    justification: str

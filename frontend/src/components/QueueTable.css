@@ -2,11 +2,13 @@
 
 .queue-table-wrap {
   @apply flex-1 overflow-auto;
+  user-select: none;
   background: var(--bg);
 }
 
 .queue-table {
   @apply w-full border-collapse text-sm;
+  min-width: 700px;
 }
 
 .queue-table thead th {
@@ -71,8 +73,20 @@
 }
 
 .score-num {
-  @apply w-12 text-right font-semibold font-mono;
+  @apply w-8 text-right font-semibold font-mono;
   color: var(--text);
+}
+
+.score-delta {
+  @apply text-[10px] font-bold font-mono whitespace-nowrap;
+}
+
+.score-delta-up {
+  color: var(--success);
+}
+
+.score-delta-down {
+  color: var(--danger);
 }
 
 .score-track {
@@ -90,7 +104,126 @@
   background: var(--accent-soft) !important;
 }
 
-.empty-state {
-  @apply flex flex-1 items-center justify-center p-16;
+.row-expanded {
+  border-bottom-color: transparent !important;
+}
+
+/* Justification sub-row */
+.justification-row {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.justification-row:hover {
+  background: var(--surface-2) !important;
+  cursor: default;
+}
+
+.justification-cell {
+  @apply px-3 py-0;
+}
+
+.justification-inner {
+  @apply flex flex-col gap-2 py-3 pl-4;
+  border-left: 3px solid var(--accent);
+}
+
+.justification-template {
+  @apply text-xs font-medium;
   color: var(--text-muted);
+}
+
+.justification-ai {
+  @apply text-xs leading-relaxed;
+  color: var(--text);
+}
+
+.justification-ai-badge {
+  @apply mr-1.5 inline-flex items-center rounded-full px-1.5 py-0.5 text-[10px] font-semibold;
+  background: linear-gradient(135deg, #a855f7, #6366f1);
+  color: #fff;
+}
+
+.justification-ai-loading {
+  @apply flex items-center gap-2 text-[11px];
+  color: var(--text-muted);
+}
+
+.justification-ai-dot {
+  @apply inline-flex h-1.5 w-1.5 rounded-full animate-pulse;
+  background: var(--accent);
+}
+
+.justification-policies {
+  @apply flex flex-wrap gap-1.5;
+}
+
+.justification-policy-tag {
+  @apply inline-flex rounded-full px-2 py-0.5 text-[10px] font-medium;
+  background: var(--warning-soft);
+  color: var(--warning);
+  border: 1px solid var(--warning);
+}
+
+/* Empty State */
+.empty-state-card {
+  @apply flex flex-1 flex-col items-center justify-center gap-4 p-16 text-center;
+}
+
+.empty-state-icon {
+  @apply rounded-full p-4;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.empty-state-title {
+  @apply text-xl font-bold;
+  color: var(--text);
+}
+
+.empty-state-desc {
+  @apply text-sm leading-relaxed;
+  color: var(--text-muted);
+  max-width: 400px;
+}
+
+.empty-state-hint {
+  @apply text-[11px];
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.empty-state-actions {
+  @apply flex gap-3 mt-2;
+}
+
+.empty-state-btn {
+  @apply rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors;
+}
+
+.empty-state-btn-primary {
+  color: #fff;
+  background: var(--accent);
+}
+
+.empty-state-btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.empty-state-btn-ghost {
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.empty-state-btn-ghost:hover {
+  background: var(--surface-3);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hide-narrow {
+    display: none;
+  }
 }

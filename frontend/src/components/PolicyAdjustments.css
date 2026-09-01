@@ -1,40 +1,29 @@
 @reference "../index.css";
 
-.panel {
-  @apply rounded-xl p-4;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-}
-
-.panel-title {
-  @apply mb-3 text-xs font-semibold uppercase tracking-wider;
-  color: var(--text-muted);
-}
-
 .policy-row {
-  @apply flex items-center justify-between py-2 border-b;
-  border-color: var(--border);
-}
-
-.policy-row:last-of-type {
-  border-bottom: none;
+  @apply flex items-start gap-3;
 }
 
 .policy-label {
-  @apply text-sm font-medium;
+  @apply text-sm font-semibold;
   color: var(--text);
 }
 
 .policy-desc {
-  @apply text-[11px];
+  @apply text-xs leading-relaxed;
   color: var(--text-muted);
 }
 
 .policy-switch {
-  @apply relative inline-flex h-5 w-9 shrink-0 items-center rounded-full transition-colors;
+  @apply relative h-5 w-9 shrink-0 cursor-pointer rounded-full transition-colors;
   background: var(--surface-3);
   border: 1px solid var(--border);
+}
+
+.policy-switch::after {
+  content: "";
+  @apply absolute left-[2px] top-[2px] h-3.5 w-3.5 rounded-full bg-white transition-transform;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .policy-switch-on {
@@ -42,40 +31,6 @@
   border-color: var(--accent);
 }
 
-.policy-switch::after {
-  content: "";
-  @apply absolute h-3.5 w-3.5 rounded-full transition-transform;
-  background: #fff;
-  left: 2px;
-}
-
 .policy-switch-on::after {
   transform: translateX(16px);
-}
-
-.mode-readout {
-  @apply mt-3 flex items-center gap-2 rounded-lg px-2.5 py-2 text-xs font-medium;
-}
-
-.mode-ml {
-  color: var(--success);
-  background: var(--success-soft);
-  border: 1px solid var(--success);
-}
-
-.mode-fallback {
-  color: var(--warning);
-  background: var(--warning-soft);
-  border: 1px solid var(--warning);
-}
-
-.mode-loading {
-  color: var(--accent);
-  background: var(--accent-soft);
-  border: 1px solid var(--accent);
-}
-
-.mode-dot {
-  @apply inline-flex h-2 w-2 rounded-full animate-pulse;
-  background: currentColor;
 }
