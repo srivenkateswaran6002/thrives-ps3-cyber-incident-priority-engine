@@ -52,7 +52,7 @@ function ScoringBanner() {
       return (
         <div className="banner banner-info">
           <div className="banner-content">
-            <span className="banner-dot" /> Connecting to ML Backend…
+            <span className="banner-dot" /> Connecting to ML Backend (Render free tier may take ~30-50s to wake up on first load)…
           </div>
         </div>
       )

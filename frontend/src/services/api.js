@@ -4,7 +4,8 @@ export async function checkHealth() {
   if (!API_BASE_URL) return false
   try {
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 3000)
+    // Increased timeout to 45s to handle Render's free tier cold starts
+    const timeout = setTimeout(() => controller.abort(), 45000)
     const res = await fetch(`${API_BASE_URL}/api/health`, { signal: controller.signal })
     clearTimeout(timeout)
     return res.ok
